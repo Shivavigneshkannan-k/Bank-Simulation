@@ -7,7 +7,7 @@ using std::vector;
 using std::endl;
 #include <ctime>
 
-
+void menu();
 class Bank{
     private:
         int accountNumber,balance;
@@ -38,11 +38,11 @@ class Bank{
             for(int i=0;i<Account.size();i++){
                 if (Account[i].accountNumber==x){
                     valid=true;
-                    // menu();
+                    menu();
                     break;    
                 }
             }
-        
+
             valid?cout<<"Account is Existed"<<endl:cout<<"Account is not Existed"<<endl;
         }
       //to view all the accounts
@@ -54,6 +54,34 @@ class Bank{
           cout<<Account[i].addharNumber<<" ";
           cout<<endl;
         }
+
+}
+
+void menu(){
+    int userChoice;
+    cout<<"1)Deposit"<<endl;
+    cout<<"2)Withdraw"<<endl;
+    cout<<"3)Check balance"<<endl;
+    cout<<"4)Create a new account"<<endl<<endl;
+    cout<<"Enter your Choice(1-4):   ";
+    cin>>userChoice;
+    switch(userChoice){
+      case 1:
+        int amountDeposit;
+        cout<<"You amount:  ";
+        cin>>amountDeposit;
+        deposit(amountDeposit);
+      case 2:
+        int amountWithdraw;
+        cout<<"You amount:  ";
+        cin>>amountWithdraw;
+        withdraw(amountWithdraw);
+      case 3:
+        Balance();
+      case 4:
+        cout<<"feature is not added yet"<<endl;
+        cout<<"sorry for your wasting your time"<<endl;
+    }
 
 }
         //function to create a new account -- not completed yet!
@@ -70,14 +98,7 @@ class Bank{
 
 };
 
-void menu(){
-    cout<<"1)Deposit"<<endl;
-    cout<<"2)Withdraw"<<endl;
-    cout<<"3)Check balance"<<endl;
-    cout<<"4)Create a new account"<<endl<<endl;
-    cout<<"Enter your Choice:   ";
 
-}
 
 
 
@@ -102,7 +123,7 @@ int main(){
     cin>>accountNum;
     c1.checkValidity(accountNum);
 
-    // cin>>userChoice;
+    
 
 
 
@@ -113,4 +134,3 @@ int main(){
 
     return 0;
 }
-  
