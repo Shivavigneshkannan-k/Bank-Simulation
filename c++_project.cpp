@@ -42,11 +42,23 @@ class Bank{
                     break;    
                 }
             }
+        
             valid?cout<<"Account is Existed"<<endl:cout<<"Account is not Existed"<<endl;
         }
+      //to view all the accounts
+      void viewAllAccount(){
+        for (int i=0;i<Account.size();i++){
+          cout<<Account[i].accountNumber<<" ";
+          cout<<Account[i].userName<<" ";
+          cout<<Account[i].balance<<" ";
+          cout<<Account[i].addharNumber<<" ";
+          cout<<endl;
+        }
+
+}
         //function to create a new account -- not completed yet!
         void createNewAccount(){
-        
+
             cout<<"Enter your Full name:    ";
 
             cout<<"Enter your Addhar Number:    ";
@@ -55,7 +67,7 @@ class Bank{
         }
 
         ~Bank(){};
-        
+
 };
 
 void menu(){
@@ -73,7 +85,7 @@ void menu(){
 vector<Bank> Bank::Account={};
 
 int main(){
-    int userChoice,accountNum;
+    int accountNum;
     //existing accounts
     Bank c1=Bank(1,"Shiva vignesh kannan",20000,413014933023);
     Bank c2=Bank(2,"mohit raj",10000,243014933023);
@@ -84,7 +96,7 @@ int main(){
     Bank::Account.push_back(c2);
     Bank::Account.push_back(c3);
     Bank::Account.push_back(c4);
-    
+
 
     cout<<"Enter your Account number:   ";
     cin>>accountNum;
@@ -98,6 +110,7 @@ int main(){
 
 
 
-    
+
     return 0;
 }
+  
