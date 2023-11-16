@@ -9,7 +9,6 @@ using std::endl;
 #include <string>
 
 
-
 class Bank{
     private:
         int balance;
@@ -43,9 +42,8 @@ class Bank{
           int userChoice;
           cout<<"1)Deposit"<<endl;
           cout<<"2)Withdraw"<<endl;
-          cout<<"3)Check balance"<<endl;
-          cout<<"4)Create a new account"<<endl<<endl;
-          cout<<"Enter your Choice(1-4):   ";
+          cout<<"3)Check balance"<<endl<<endl;
+          cout<<"Enter your Choice(1-3):   ";
           cin>>userChoice;
           switch(userChoice){
             case 1:
@@ -62,9 +60,6 @@ class Bank{
               break;
             case 3:
               Balance();
-              break;
-            case 4:
-              cout<<"feature is not added yet"<<endl;
               break;
             default:
               cout<<"Invalid Input"<<endl;
@@ -111,27 +106,36 @@ class Bank{
         ~Bank(){};
 
 };
+
+vector<Bank> Account;
+
+void checkValidity(signed long long int x);
 void createNewAccount(){
   string name;
   signed long long int id;
   int balance=0;
   signed long long int randNum;
+  signed long long int accnum;
   
     cout<<"Enter your Full name:    ";
     cin>>name;
     cout<<"Enter your Addhar Number:    ";
-    // cin.flush("\n");
+    fflush(stdin);
     cin>>id;
      srand(time(0)); 
     randNum=rand()*10000000+1;
-    cout<<"Congrats! Your account have been created"<<endl;
+    cout<<"Congrats! Your account have been created"<<endl<<endl;
+    cout<<"Please note your Account number: "<<randNum<<endl;
     Bank *pobj;
-    pobj=new Bank(randNum,name,balance,id);}
-
-//accounts in bank are saved 
-vector<Bank> Account;
-
-void checkValidity(int x){
+    pobj=new Bank(randNum,name,balance,id);
+    Bank obj=*pobj;
+    Account.push_back(obj);
+    fflush(stdin);
+    cout<<"Enter your Account number:   ";
+    cin>>accnum;
+    checkValidity(accnum);
+    }
+void checkValidity(signed long long int x){
     int run=0;
     bool valid=false;
     for(int i=0;i<Account.size();i++){
@@ -166,8 +170,9 @@ void checkValidity(int x){
 
 
 
+
 int main(){
-    int accountNum;
+    signed long long int accountNum;
     //existing accounts
     Bank c1=Bank(1,"Shiva vignesh kannan",20000,413014933023);
     Bank c2=Bank(2,"mohit raj",10000,243014933023);
