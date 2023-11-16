@@ -6,6 +6,7 @@ using std::string;
 using std::vector;
 using std::endl;
 #include <ctime>
+#include <string>
 
 
 
@@ -15,9 +16,8 @@ class Bank{
         signed long long int addharNumber;
         string userName;
     public:
-        // static vector<Bank> Account;
     //constructor
-    int  accountNumber;
+    signed long long int  accountNumber;
         Bank(int AccountNumber,string UserName,int Balance,signed long long int id){
             accountNumber=AccountNumber;
             userName=UserName;
@@ -26,11 +26,15 @@ class Bank{
         }
         void deposit(int x){
             balance+=x;
-            cout<<x<<"has deposited from your Account"<<endl;
+            cout<<x<<" has deposited from your Account "<<endl;
         }
         void withdraw(int x){
+          if (x>balance){
+            cout<<"Insufficient Balance"<<endl;
+          }else{
             balance-=x;
-            cout<<x<<"is withdrawn from your Account"<<endl;
+            cout<<x<<" is withdrawn from your Account "<<endl;}
+            
         }
         void Balance(){
             cout<<"Balance: "<<balance<<endl;
@@ -61,60 +65,106 @@ class Bank{
               break;
             case 4:
               cout<<"feature is not added yet"<<endl;
-              cout<<"sorry for your wasting your time"<<endl;
               break;
+            default:
+              cout<<"Invalid Input"<<endl;
+             
+             
+             
           }
       
       }
-
-      //to view all the accounts
-      // void viewAllAccount(){
-      //   for (size_t i=0;i<Account.size();i++){
-      //     cout<<Account[i].accountNumber<<" ";
-      //     cout<<Account[i].userName<<" ";
-      //     cout<<Account[i].balance<<" ";
-      //     cout<<Account[i].addharNumber<<" ";
-      //     cout<<endl;
-      //   }
+// to view all the accounts
+//       void viewAllAccount(){
+//         for (size_t i=0;i<Account.size();i++){
+//           cout<<Account[i].accountNumber<<" ";
+//           cout<<Account[i].userName<<" ";
+//           cout<<Account[i].balance<<" ";
+//           cout<<Account[i].addharNumber<<" ";
+//           cout<<endl;
+//         }
 
 // }
+      
 
         //function to create a new account -- not completed yet!
-        void createNewAccount(){
+        // void createNewAccount(){
+        //   string name;
+        //   signed long long int id;
+        //   int balance=0;
+        //   signed long long int randNum;
+          
+        //     cout<<"Enter your Full name:    ";
+        //     cin>>name;
 
-            cout<<"Enter your Full name:    ";
+        //     cout<<"Enter your Addhar Number:    ";
+        //     cin>>id;
+        //      srand(time(0)); 
+        //     randNum=rand()*10000000+1;
+        //     cout<<"Congrats! Your account have been created"<<endl;
+        //     Bank *pobj;
+        //     pobj=new Bank(randNum,name,balance,id);
 
-            cout<<"Enter your Addhar Number:    ";
+            
+        // }
 
-            cout<<"Congrats! Your account have been created"<<endl;
-        }
-
-        // ~Bank(){};
+        ~Bank(){};
 
 };
+void createNewAccount(){
+  string name;
+  signed long long int id;
+  int balance=0;
+  signed long long int randNum;
+  
+    cout<<"Enter your Full name:    ";
+    cin>>name;
+    cout<<"Enter your Addhar Number:    ";
+    // cin.flush("\n");
+    cin>>id;
+     srand(time(0)); 
+    randNum=rand()*10000000+1;
+    cout<<"Congrats! Your account have been created"<<endl;
+    Bank *pobj;
+    pobj=new Bank(randNum,name,balance,id);}
 
+//accounts in bank are saved 
 vector<Bank> Account;
+
 void checkValidity(int x){
+    int run=0;
     bool valid=false;
     for(int i=0;i<Account.size();i++){
         if (Account[i].accountNumber==x){
             valid=true;
             cout<<"Account is Existed"<<endl;
-          
+            do{
+            Account[i].menu();
+            cout<<"Want to continue enter 1:";
+            cin>>run;
+            }while(run==1);
             break;
           
         }
     }
   if (valid==false){
+    char options;
     cout<<"Account is not Existed"<<endl;
+    cout<<"would you like to open a new account"<<endl;
+    cout<<"enter (y/n): ";
+    cin>>options;
+    options=tolower(options);
+    if (options=='y'){
+    createNewAccount();
+    }
+    
   }
-}   
+};
 
 
 
 
 
-// vector<Bank> Bank::Account={};
 
 int main(){
     int accountNum;
@@ -132,6 +182,7 @@ int main(){
     cout<<"Enter your Account number:   ";
     cin>>accountNum;
     checkValidity(accountNum);
+    
 
 
 
