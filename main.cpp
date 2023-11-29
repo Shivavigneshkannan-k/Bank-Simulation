@@ -12,12 +12,12 @@ using std::endl;
 class Bank{
     private:
         int balance;
-        signed long long int addharNumber;
+        unsigned long long int addharNumber;
         string userName;
     public:
     //constructor
-    signed long long int  accountNumber;
-        Bank(int AccountNumber,string UserName,int Balance,signed long long int id){
+    unsigned long long int  accountNumber;
+        Bank(int AccountNumber,string UserName,int Balance,unsigned long long int id){
             accountNumber=AccountNumber;
             userName=UserName;
             balance=Balance;
@@ -69,60 +69,26 @@ class Bank{
           }
       
       }
-// to view all the accounts
-//       void viewAllAccount(){
-//         for (size_t i=0;i<Account.size();i++){
-//           cout<<Account[i].accountNumber<<" ";
-//           cout<<Account[i].userName<<" ";
-//           cout<<Account[i].balance<<" ";
-//           cout<<Account[i].addharNumber<<" ";
-//           cout<<endl;
-//         }
-
-// }
-      
-
-        //function to create a new account -- not completed yet!
-        // void createNewAccount(){
-        //   string name;
-        //   signed long long int id;
-        //   int balance=0;
-        //   signed long long int randNum;
-          
-        //     cout<<"Enter your Full name:    ";
-        //     cin>>name;
-
-        //     cout<<"Enter your Addhar Number:    ";
-        //     cin>>id;
-        //      srand(time(0)); 
-        //     randNum=rand()*10000000+1;
-        //     cout<<"Congrats! Your account have been created"<<endl;
-        //     Bank *pobj;
-        //     pobj=new Bank(randNum,name,balance,id);
-
-            
-        // }
-
         ~Bank(){};
 
 };
-
+//server of the bank
 vector<Bank> Account;
 
-void checkValidity(signed long long int x);
+void checkValidity(unsigned long long int x);
 void createNewAccount(){
   string name;
-  signed long long int id;
+  unsigned long long int id;
   int balance=0;
-  signed long long int randNum;
-  signed long long int accnum;
+  unsigned long long int randNum;
+  unsigned long long int accnum;
   
     cout<<"Enter your Full name:    ";
     cin>>name;
     cout<<"Enter your Addhar Number:    ";
     fflush(stdin);
     cin>>id;
-     srand(time(0)); 
+    srand(time(0)); 
     randNum=rand()*10000000+1;
     cout<<"Congrats! Your account have been created"<<endl<<endl;
     cout<<"Please note your Account number: "<<randNum<<endl;
@@ -135,7 +101,7 @@ void createNewAccount(){
     cin>>accnum;
     checkValidity(accnum);
     }
-void checkValidity(signed long long int x){
+void checkValidity(unsigned long long int x){
     int run=0;
     bool valid=false;
     for(int i=0;i<Account.size();i++){
@@ -172,7 +138,7 @@ void checkValidity(signed long long int x){
 
 
 int main(){
-    signed long long int accountNum;
+    unsigned long long int accountNum;
     //existing accounts
     Bank c1=Bank(1,"Shiva vignesh kannan",20000,413014933023);
     Bank c2=Bank(2,"mohit raj",10000,243014933023);
